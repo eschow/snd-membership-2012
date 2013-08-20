@@ -1,6 +1,25 @@
-var regions = {
+var make_sum = {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "9": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "19": 0,
+    "20": 0,
+    "21": 0    
+}
+var summary_counts = {
     "1" : {
         "name" : "Eastern U.S.", 
+        "count": 139,
         "states" : [
             "ME",
             "NH",
@@ -20,6 +39,7 @@ var regions = {
     },
     "2" : {
         "name" : "Western U.S.", 
+        "count": 143,
         "states" : [
             "AK",
             "HI",
@@ -29,6 +49,7 @@ var regions = {
             "NV",
             "AZ",
             "UT",
+            "IA",
             "ID",
             "MT",
             "WY",
@@ -44,6 +65,7 @@ var regions = {
     },
     "3" : {
         "name" : "Southern U.S.", 
+        "count": 140,
         "states" : [
             "TN",
             "NC",
@@ -61,6 +83,7 @@ var regions = {
     },
     "4" : {
         "name" : "Central U.S.",
+        "count": 178,
         "states" : [
             "MI",
             "IN",
@@ -70,14 +93,16 @@ var regions = {
             "KY"
         ]
     },
-    "9/10" : {
+    "9" : {
         "name" : "Canada", 
+        "count": 35,
         "countries" : [
             "Canada"
         ]
     },
     "11" : {
         "name" : "Mexico and Central America",
+        "count": 11,
         "countries" : [
             "Mexico",
             "Central America"
@@ -85,12 +110,14 @@ var regions = {
     },
     "12" : {
         "name" : "South America",
+        "count": 37,
         "countries" : [
             "South America"
         ]
     },
     "13" : {
         "name" : "Scandinavia",
+        "count": 52,
         "countries" : [
             "Denmark",
             "Finland",
@@ -101,6 +128,7 @@ var regions = {
     },
     "14" : {
         "name" : "Spain",
+        "count": 12,
         "countries" : [
             "Spain",
             "Portugal",
@@ -112,6 +140,7 @@ var regions = {
     },
     "15" : {
         "name" : "Western Europe",
+        "count": 20,
         "countries" : [
             "Bulgaria",
             "Croatia",
@@ -129,6 +158,7 @@ var regions = {
     },
     "16" : {
         "name" : "Dach",
+        "count": 30,
         "countries" : [
             "Austria",
             "Germany",
@@ -137,6 +167,7 @@ var regions = {
     },
     "17" : {
         "name" : "Russia",
+        "count": 12,
         "countries" : [
             "Kazakhstan",
             "Kyrgyzstan",
@@ -145,6 +176,7 @@ var regions = {
     },
     "18" : {
         "name" : "France", 
+        "count": 3,
         "countries" : [
             "France",
             "Belgium"
@@ -152,6 +184,7 @@ var regions = {
     },
     "19" : {
         "name" : "Asia, South-Pacific",
+        "count": 26,
         "countries" : [
             "Australia",
             "India",
@@ -167,6 +200,7 @@ var regions = {
     },
     "20" : {
         "name" : "Africa and Middle East",
+        "count": 13,
         "countries" : [
             "Egypt",
             "Israel",
@@ -179,6 +213,7 @@ var regions = {
     },
     "21" : {
         "name" : "China", 
+        "count": 83,
         "countries" : [
             "China",
             "Hong Kong",

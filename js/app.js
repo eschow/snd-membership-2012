@@ -4,6 +4,22 @@ function init(){
     ich.grabTemplates();
     drawRows();
     drawMap();
+    // makeSums();
+}
+
+function makeSums(){
+    $.each(members, function(k, v){
+        if (v.country === 'United States') {
+            // console.log(v.first, regions[v.state]);
+            make_sum[regions[v.state]]++;
+        } else if (v.country !== undefined) {
+            // console.log(v.country, regions[toTitleCase(v.country)]);
+            make_sum[regions[toTitleCase(v.country)]]++;
+        } else {
+            console.log('ERROR: ' + v.country);
+        }
+    });
+    console.log(make_sum);
 }
 
 function drawRows(){

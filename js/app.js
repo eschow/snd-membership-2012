@@ -9,7 +9,7 @@ function init(){
 
 function makeSums(){
     $.each(members, function(k, v){
-        if (v.country === 'United States') {
+        if (v.country === 'U.S.') {
             // console.log(v.first, regions[v.state]);
             make_sum[regions[v.state]]++;
         } else if (v.country !== undefined) {
@@ -60,7 +60,11 @@ function drawMap(){
 }
 
 function toTitleCase(str){
-    return str.replace(/\w\S*/g, function(txt){ return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    if (str.indexOf('.') !== -1){
+        return str;
+    } else {
+        return str.replace(/\w\S*/g, function(txt){ return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    }
 }
 
 init();

@@ -1,0 +1,20 @@
+article {
+    margin: 0 auto;
+    width: 1170px;
+}
+section {
+    text-align: center;
+}
+.unit {
+    fill: transparent;
+    stroke: #222;
+    stroke-width: 0.4;
+}
+
+#members_wrapper {
+    margin: 0 auto;
+    width: 85%;
+}
+#members {
+    padding: 20px 0;
+}

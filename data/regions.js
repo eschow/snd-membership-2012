@@ -70,25 +70,10 @@ var regions = {
             "KY"
         ]
     },
-    "9" : {
+    "9/10" : {
         "name" : "Canada", 
-        "states" : [
-            "New Brunswick",
-            "Newfoundland",
-            "Ontario",
-            "Nova Scotia",
-            "Prince Edward Island"
-        ]
-    },
-    "10" : {
-        "name" : "Canada", 
-        "states" : [
-            "Alberta",
-            "British Columbia",
-            "Manitoba",
-            "Northwest Territories",
-            "Saskatchewan",
-            "Yukon Territories"
+        "countries" : [
+            "Canada"
         ]
     },
     "11" : {
@@ -117,66 +102,87 @@ var regions = {
     "14" : {
         "name" : "Spain",
         "countries" : [
-            "Spain"
+            "Spain",
+            "Portugal",
+            "Italy",
+            "Greece",
+            "Cyprus",
+            "Turkey"
         ]
     },
     "15" : {
         "name" : "Western Europe",
         "countries" : [
-            "Austria",
-            "Belgium",
-            "Denmark", 
-            "Finland",
-            "France", 
-            "Germany",
-            "Greece",
-            "Iceland",
-            "Ireland",
-            "Italy",
-            "Luxembourg",
+            "Bulgaria",
+            "Croatia",
+            "Czech Republic",
+            "Estonia",
+            "Hungary",
+            "Latvia",
+            "Lithuania",
             "Netherlands",
-            "Norway",
-            "Portugal",
-            "Spain",
-            "Sweden",
-            "Switzerland",
+            "Poland",
+            "Romania",
+            "Ukraine",
             "United Kingdom"
         ]
     },
     "16" : {
         "name" : "Dach",
         "countries" : [
-
+            "Austria",
+            "Germany",
+            "Switzerland"
         ]
     },
     "17" : {
         "name" : "Russia",
         "countries" : [
+            "Kazakhstan",
+            "Kyrgyzstan",
             "Russia"
         ]
     },
     "18" : {
         "name" : "France", 
         "countries" : [
-            "France"
+            "France",
+            "Belgium"
         ]
     },
     "19" : {
         "name" : "Asia, South-Pacific",
         "countries" : [
-            
+            "Australia",
+            "India",
+            "Indonesia",
+            "Japan",
+            "Malaysia",
+            "Phillipines",
+            "Singapore",
+            "South Korea",
+            "Thailand",
+            "New Zealand"
         ]
     },
     "20" : {
         "name" : "Africa and Middle East",
         "countries" : [
-
+            "Egypt",
+            "Israel",
+            "Libya",
+            "Oman",
+            "Saudi Arabia",
+            "South Africa",
+            "United Arab Emirates"
         ]
     },
     "21" : {
         "name" : "China", 
         "countries" : [
-            "China"
+            "China",
+            "Hong Kong",
+            "Taiwan"
         ]
     }
 }

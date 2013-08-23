@@ -73,8 +73,13 @@ function drawMap(){
                 console.log(id, quantize(totals[id]));
                 return "unit " + id + " " + quantize(totals[id]);
             })
-            .attr("d", path);
-
+            .attr("d", path)
+            .on('mouseenter', function(d){
+                showBox(d.properties);
+            })
+            .on('mouseleave', function(e){
+                hideBox();
+            });
     });    
 
     addEventListeners();
@@ -96,6 +101,20 @@ function addEventListeners(){
             'top' : y
         });
     });
+}
+
+function showBox(d){
+    if (totals[d.name]){
+        $infobox.find('#region').html('Region ' + regions[d.name]);
+        $infobox.find('#member-total').html(totals[d.name]);
+        $infobox.find('#location').html(d.name);
+
+        $infobox.show();        
+    }
+}
+
+function hideBox(){
+    $infobox.hide();
 }
 
 function toTitleCase(str){

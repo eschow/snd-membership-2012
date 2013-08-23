@@ -18,7 +18,7 @@ p {
 }
 .posabs { position: absolute; }
 .posrel { position: relative; }
-/*.no-display { display: none; }*/
+.no-display { display: none; }
 /* d3 */
 .unit {
     fill: transparent;

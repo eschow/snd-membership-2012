@@ -16,7 +16,7 @@ var totals = {
 	"Kansas": 6,
 	"Kentucky": 19,
 	"Louisiana": 2,
-	"Massachussetts": 5,
+	"Massachusetts": 5,
 	"Maryland": 13,
 	"Maine": 1,
 	"Michigan": 44,

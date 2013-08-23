@@ -1,4 +1,5 @@
-var $table = $('#members');
+var $table = $('#members'),
+    $infobox = $('#info-box');
 
 function init(){
     ich.grabTemplates();
@@ -7,19 +8,29 @@ function init(){
     // makeSums();
 }
 
+var US_counts = {};
+var abroad_counts = {};
+
 function makeSums(){
     $.each(members, function(k, v){
         if (v.country === 'U.S.') {
-            // console.log(v.first, regions[v.state]);
-            make_sum[regions[v.state]]++;
+            if (US_counts[v.state]){
+                US_counts[v.state]++;
+            } else {
+                US_counts[v.state] = 1;
+            }
         } else if (v.country !== undefined) {
-            // console.log(v.country, regions[toTitleCase(v.country)]);
-            make_sum[regions[toTitleCase(v.country)]]++;
+            if (abroad_counts[v.country]){
+                abroad_counts[v.country]++;
+            } else {
+                abroad_counts[v.country] = 1;
+            }
         } else {
             console.log('ERROR: ' + v.country);
         }
     });
-    console.log(make_sum);
+    console.log(US_counts);
+    console.log(abroad_counts);
 }
 
 function drawRows(){
@@ -39,6 +50,10 @@ function drawMap(){
         .scale(150)
         .translate([width / 2, height / 2]);
 
+    var quantize = d3.scale.quantize()
+        .domain([0, 85])
+        .range(d3.range(5).map(function(i) { return "q" + i + "-9"; }));
+
     var path = d3.geo.path()
         .projection(projection);
 
@@ -53,10 +68,34 @@ function drawMap(){
         svg.selectAll(".unit")
             .data(topojson.feature(data, data.objects.combined).features)
             .enter().append("path")
-            .attr("class", function(d) { return "unit " + d.id; })
+            .attr("class", function(d) { 
+                var id = d.properties.name;
+                console.log(id, quantize(totals[id]));
+                return "unit " + id + " " + quantize(totals[id]);
+            })
             .attr("d", path);
 
     });    
+
+    addEventListeners();
+}
+
+function addEventListeners(){
+    $(window).mousemove(function(e){
+        var $c = $infobox.parent(),
+            offset = $c.offset(),
+            midX = $c.outerWidth() / 2;
+
+        var mouse_x = e.pageX - offset.left + 10,
+            mouse_y = e.pageY - offset.top + 10,
+            x = mouse_x > midX ? mouse_x - $infobox.outerWidth() - 10 : mouse_x,
+            y = mouse_y;
+
+        $infobox.css({
+            'left' : x,
+            'top' : y
+        });
+    });
 }
 
 function toTitleCase(str){

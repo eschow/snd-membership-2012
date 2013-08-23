@@ -8,11 +8,29 @@ article {
 section {
     text-align: center;
 }
+p {
+	margin: 0;
+	padding: 0;
+}
+.caps {
+	font-size: 0.7em;
+	text-transform: uppercase;
+}
+.posabs { position: absolute; }
+.posrel { position: relative; }
+/*.no-display { display: none; }*/
+/* d3 */
 .unit {
     fill: transparent;
     stroke: #222;
     stroke-width: 0.4;
 }
+
+.q0-9 { fill:rgb(107,174,214); }
+.q1-9 { fill:rgb(66,146,198); }
+.q2-9 { fill:rgb(33,113,181); }
+.q3-9 { fill:rgb(8,81,156); }
+.q4-9 { fill:rgb(8,48,107); }
 
 #members_wrapper {
     margin: 0 auto;
@@ -20,6 +38,17 @@ section {
 }
 #members {
     padding: 20px 0;
+}
+#info-box {
+	background-color: white;
+	border: 1px solid #ccc;
+	-webkit-box-shadow: 0px 0px 4px #ddd;
+	-moz-box-shadow: 0px 0px 4px #ddd;
+	box-shadow: 0px 0px 4px #ddd;
+	font-size: 0.9em;
+	max-width: 180px;
+	padding: 8px;
+	z-index: 5;
 }
 /*
  *  File:         demo_table.css

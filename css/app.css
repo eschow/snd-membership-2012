@@ -131,6 +131,7 @@ table, tr, td {
 	position: relative;
 	clear: both;
 	zoom: 1; /* Feeling sorry for IE */
+	font-size: 0.9em;
 }
 
 .dataTables_processing {
@@ -201,6 +202,7 @@ table, tr, td {
 	cursor: pointer;
 	*cursor: hand;
 	color: #111 !important;
+	padding: 0px 10px;
 }
 .paginate_disabled_previous:hover, .paginate_enabled_previous:hover,
 .paginate_disabled_next:hover, .paginate_enabled_next:hover {

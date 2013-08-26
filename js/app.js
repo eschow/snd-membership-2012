@@ -35,7 +35,7 @@ function drawMap(height){
         .scale(width/400 * 70)
         .translate([width/2 - 20, height/2 + height/50]);
 
-    var quantize = d3.scale.quantize()
+    var quantile = d3.scale.quantile()
         .domain([0, 85])
         .range(d3.range(5).map(function(i) { return "q" + i + "-9"; }));
 
@@ -58,7 +58,7 @@ function drawMap(height){
                     region_totals[regions[id]] += totals[id];
 
                 }
-                return "unit " + id + " " + quantize(totals[id]);
+                return "unit " + id + " " + quantile(totals[id]);
             })
             .attr("d", path)
             .on('mouseenter', function(d){

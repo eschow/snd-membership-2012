@@ -1,6 +1,9 @@
 var $table = $('#members'),
+    datatable,
     $infobox = $('#info-box'),
     $map = $('#map');
+
+var region_totals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function init(){
     ich.grabTemplates();
@@ -18,7 +21,7 @@ function drawRows(){
         var row = ich.table_row(v);
         $table.append(row);
     });
-    $('#members').dataTable();
+    datatable = $('#members').dataTable();
 }
 
 function drawMap(height){
@@ -50,37 +53,32 @@ function drawMap(height){
             .enter().append("path")
             .attr("class", function(d) { 
                 var id = d.properties.name;
-                // console.log(id, quantize(totals[id]));
+                if (totals[id] && regions[id]){
+                    summary_counts[regions[id]]['count'] += totals[id];
+                    region_totals[regions[id]] += totals[id];
+
+                }
                 return "unit " + id + " " + quantize(totals[id]);
             })
             .attr("d", path)
             .on('mouseenter', function(d){
-                showBox(d.properties);
+                var id = d.properties.name;
+                if (totals[id]){
+                    showBox(d.properties);
+                }
             })
             .on('mouseleave', function(e){
                 hideBox();
+            })
+            .on('click', function(e){
+                if (e.properties.postal){
+                    datatable.fnFilter(e.properties.postal);
+                    // datatable.fnFilter(e.properties.postal, 5);
+                } else {
+                    datatable.fnFilter(e.properties.name);
+                    // datatable.fnFilter(e.properties.name, 6);
+                }
             });
-
-        // var r = 180;
-        // var legend = d3.select("#map").append("svg")
-        //     .attr("class", "legend")
-        //     .attr("width", r)
-        //     .attr("height", r * 2)
-        //     .selectAll("g")
-        //     .data(data)
-        //     .enter().append("g")
-        //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-        // legend.append("rect")
-        //     .attr("width", 18)
-        //     .attr("height", 18)
-        //     .style("fill", function(d, i) { return quantize(i); });
-
-        // legend.append("text")
-        //     .attr("x", 24)
-        //     .attr("y", 9)
-        //     .attr("dy", ".35em")
-        //     .text(function(d) { return d.label; }); 
     });   
 
     $(window).resize();
@@ -123,13 +121,11 @@ function calc_height(){
 }
 
 function showBox(d){
-    if (totals[d.name]){
-        $infobox.find('#region').html('Region ' + regions[d.name]);
-        $infobox.find('#member-total').html(totals[d.name]);
-        $infobox.find('#location').html(d.name);
+    $infobox.find('#region').html('Region ' + regions[d.name]);
+    $infobox.find('#member-total').html(totals[d.name]);
+    $infobox.find('#location').html(d.name);
 
-        $infobox.show();        
-    }
+    $infobox.show();        
 }
 
 function hideBox(){
@@ -137,10 +133,10 @@ function hideBox(){
 }
 
 function toTitleCase(str){
-    if (str.indexOf('.') !== -1){
-        return str;
-    } else {
+    if (str !== 'UAE' && str !== 'US' && str !== 'UK'){
         return str.replace(/\w\S*/g, function(txt){ return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    } else {
+        return str;
     }
 }
 

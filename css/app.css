@@ -1,4 +1,4 @@
-body {
+	body {
 	font-family: 'Istok Web', Helvetica, Arial, sans-serif;
 }
 article {
@@ -40,6 +40,10 @@ table, tr, td {
     stroke: #222;
     stroke-width: 0.4;
 }
+.unit.outlined {
+	stroke: #000;
+	stroke-width: 1.2;
+}
 
 .q0-9 { fill:rgb(107,174,214); background-color:rgb(107,174,214); }
 .q1-9 { fill:rgb(66,146,198); background-color:rgb(66,146,198); }
@@ -48,6 +52,8 @@ table, tr, td {
 .q4-9 { fill:rgb(8,48,107); background-color:rgb(8,48,107); }
 
 #legend {
+	font-size: 0.8em;
+	margin: 0 auto 15px;
 	width: 200px;
 }
 #legend tr {
@@ -55,8 +61,15 @@ table, tr, td {
 	width: 100%;
 }
 #legend td {
-	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 	width: 20%;
+}
+#legend .values td {
+	border: 0;
+	text-align: right;
+	position: relative;
+	top: 0px;
+	right: -8px;	
 }
 #legend .lines {
 	background-color: white;
@@ -550,5 +563,9 @@ div.box {
 	.visible-desktop,
 	.dataTables_wrapper {
 		display: none;
+	}
+
+	.unit {
+	    stroke-width: 0.12;
 	}
 }

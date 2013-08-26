@@ -1,25 +1,7 @@
-var make_sum = {
-    "1": 0,
-    "2": 0,
-    "3": 0,
-    "4": 0,
-    "9": 0,
-    "11": 0,
-    "12": 0,
-    "13": 0,
-    "14": 0,
-    "15": 0,
-    "16": 0,
-    "17": 0,
-    "18": 0,
-    "19": 0,
-    "20": 0,
-    "21": 0    
-}
 var summary_counts = {
     "1" : {
         "name" : "Eastern U.S.", 
-        "count": 139,
+        "count": 0,
         "states" : [
             "ME",
             "NH",
@@ -39,7 +21,7 @@ var summary_counts = {
     },
     "2" : {
         "name" : "Western U.S.", 
-        "count": 143,
+        "count": 0,
         "states" : [
             "AK",
             "HI",
@@ -65,7 +47,7 @@ var summary_counts = {
     },
     "3" : {
         "name" : "Southern U.S.", 
-        "count": 140,
+        "count": 0,
         "states" : [
             "TN",
             "NC",
@@ -83,7 +65,7 @@ var summary_counts = {
     },
     "4" : {
         "name" : "Central U.S.",
-        "count": 178,
+        "count": 0,
         "states" : [
             "MI",
             "IN",
@@ -95,14 +77,14 @@ var summary_counts = {
     },
     "9" : {
         "name" : "Canada", 
-        "count": 35,
+        "count": 0,
         "countries" : [
             "Canada"
         ]
     },
     "11" : {
         "name" : "Mexico and Central America",
-        "count": 11,
+        "count": 0,
         "countries" : [
             "Mexico",
             "Central America"
@@ -110,14 +92,14 @@ var summary_counts = {
     },
     "12" : {
         "name" : "South America",
-        "count": 37,
+        "count": 0,
         "countries" : [
             "South America"
         ]
     },
     "13" : {
         "name" : "Scandinavia",
-        "count": 52,
+        "count": 0,
         "countries" : [
             "Denmark",
             "Finland",
@@ -128,7 +110,7 @@ var summary_counts = {
     },
     "14" : {
         "name" : "Spain",
-        "count": 12,
+        "count": 0,
         "countries" : [
             "Spain",
             "Portugal",
@@ -140,7 +122,7 @@ var summary_counts = {
     },
     "15" : {
         "name" : "Western Europe",
-        "count": 20,
+        "count": 0,
         "countries" : [
             "Bulgaria",
             "Croatia",
@@ -158,7 +140,7 @@ var summary_counts = {
     },
     "16" : {
         "name" : "Dach",
-        "count": 30,
+        "count": 0,
         "countries" : [
             "Austria",
             "Germany",
@@ -167,7 +149,7 @@ var summary_counts = {
     },
     "17" : {
         "name" : "Russia",
-        "count": 12,
+        "count": 0,
         "countries" : [
             "Kazakhstan",
             "Kyrgyzstan",
@@ -176,7 +158,7 @@ var summary_counts = {
     },
     "18" : {
         "name" : "France", 
-        "count": 3,
+        "count": 0,
         "countries" : [
             "France",
             "Belgium"
@@ -184,7 +166,7 @@ var summary_counts = {
     },
     "19" : {
         "name" : "Asia, South-Pacific",
-        "count": 26,
+        "count": 0,
         "countries" : [
             "Australia",
             "India",
@@ -200,7 +182,7 @@ var summary_counts = {
     },
     "20" : {
         "name" : "Africa and Middle East",
-        "count": 13,
+        "count": 0,
         "countries" : [
             "Egypt",
             "Israel",
@@ -213,7 +195,7 @@ var summary_counts = {
     },
     "21" : {
         "name" : "China", 
-        "count": 83,
+        "count": 0,
         "countries" : [
             "China",
             "Hong Kong",

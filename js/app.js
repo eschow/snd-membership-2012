@@ -58,6 +58,7 @@ function drawMap(height){
                     region_totals[regions[id]] += totals[id];
 
                 }
+                console.log(quantile(100));
                 return "unit " + id + " " + quantile(totals[id]);
             })
             .attr("d", path)

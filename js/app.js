@@ -1,37 +1,16 @@
 var $table = $('#members'),
-    $infobox = $('#info-box');
+    $infobox = $('#info-box'),
+    $map = $('#map');
 
 function init(){
     ich.grabTemplates();
     drawRows();
-    drawMap();
-    // makeSums();
+    drawMap(calc_height());
+    addEventListeners();
 }
 
 var US_counts = {};
 var abroad_counts = {};
-
-function makeSums(){
-    $.each(members, function(k, v){
-        if (v.country === 'U.S.') {
-            if (US_counts[v.state]){
-                US_counts[v.state]++;
-            } else {
-                US_counts[v.state] = 1;
-            }
-        } else if (v.country !== undefined) {
-            if (abroad_counts[v.country]){
-                abroad_counts[v.country]++;
-            } else {
-                abroad_counts[v.country] = 1;
-            }
-        } else {
-            console.log('ERROR: ' + v.country);
-        }
-    });
-    console.log(US_counts);
-    console.log(abroad_counts);
-}
 
 function drawRows(){
     $.each(members, function(k, v){
@@ -42,13 +21,16 @@ function drawRows(){
     $('#members').dataTable();
 }
 
-function drawMap(){
-    var width = 960,
-        height = 490;
+function drawMap(height){
+    if ($map.find('svg').length > 0){
+        d3.select('#map svg').remove();
+    }
 
-    var projection = d3.geo.equirectangular()
-        .scale(150)
-        .translate([width / 2, height / 2]);
+    var width = $map.width();
+
+    var projection = d3.geo.winkel3()    
+        .scale(width/400 * 70)
+        .translate([width/2 - 20, height/2 + height/50]);
 
     var quantize = d3.scale.quantize()
         .domain([0, 85])
@@ -57,20 +39,18 @@ function drawMap(){
     var path = d3.geo.path()
         .projection(projection);
 
-    var svg = d3.select("#map").append("svg")
-        .attr("width", width)
+    var svg = d3.select("#map").insert("svg:svg", "map")
+        .attr("width", '100%')
         .attr("height", height);
 
+
     d3.json("data/combined.json", function(error, data) {
-      // svg.append("path")
-      //     .datum(units)
-      //     .attr("d", path);
         svg.selectAll(".unit")
             .data(topojson.feature(data, data.objects.combined).features)
             .enter().append("path")
             .attr("class", function(d) { 
                 var id = d.properties.name;
-                console.log(id, quantize(totals[id]));
+                // console.log(id, quantize(totals[id]));
                 return "unit " + id + " " + quantize(totals[id]);
             })
             .attr("d", path)
@@ -80,9 +60,30 @@ function drawMap(){
             .on('mouseleave', function(e){
                 hideBox();
             });
-    });    
 
-    addEventListeners();
+        // var r = 180;
+        // var legend = d3.select("#map").append("svg")
+        //     .attr("class", "legend")
+        //     .attr("width", r)
+        //     .attr("height", r * 2)
+        //     .selectAll("g")
+        //     .data(data)
+        //     .enter().append("g")
+        //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+        // legend.append("rect")
+        //     .attr("width", 18)
+        //     .attr("height", 18)
+        //     .style("fill", function(d, i) { return quantize(i); });
+
+        // legend.append("text")
+        //     .attr("x", 24)
+        //     .attr("y", 9)
+        //     .attr("dy", ".35em")
+        //     .text(function(d) { return d.label; }); 
+    });   
+
+    $(window).resize();
 }
 
 function addEventListeners(){
@@ -101,6 +102,24 @@ function addEventListeners(){
             'top' : y
         });
     });
+
+    $(window).resize(function() {
+        if(this.resizeTO) clearTimeout(this.resizeTO);
+        this.resizeTO = setTimeout(function() {
+            $(this).trigger('resizeEnd');
+        }, 500);
+    });
+
+    $(window).bind('resizeEnd', function() {
+        var height = calc_height();
+        $("#map svg").css("height", height);
+        drawMap(height);
+        if(this.resizeTO) clearTimeout(this.resizeTO);
+    });    
+}
+
+function calc_height(){
+    return $map.width() * 0.5;
 }
 
 function showBox(d){

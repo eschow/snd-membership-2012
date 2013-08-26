@@ -42,6 +42,7 @@ var totals = {
 	"Washington": 8,
 	"Wisconsin": 5,
 	"Wyoming": 2,
+	// "U.S." : 600,
 	"Argentina": 3,
 	"Australia": 8,
 	"Austria": 5,

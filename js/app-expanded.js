@@ -25,27 +25,27 @@ function drawRows(){
 }
 
 function drawMap(height){
-    if ($map.find('svg').length > 0){
-        d3.select('#map svg').remove();
-    }
 
-    var width = $map.width();
+    var margin = {top: 10, left: 10, bottom: 10, right: 10},
+        width = parseInt(d3.select('#map').style('width')),
+        width = width - margin.left - margin.right,
+        mapRatio = .5,
+        height = width * mapRatio;
 
-    var projection = d3.geo.winkel3()    
+    var projection = d3.geo.winkel3()
         .scale(width/400 * 70)
-        .translate([width/2 - 20, height/2 + height/50]);
+        .translate([width / 2 - 20, height / 2 + height/50]);
+
+    var path = d3.geo.path()
+        .projection(projection);
 
     var quantile = d3.scale.quantile()
         .domain([0, 85])
         .range(d3.range(5).map(function(i) { return "q" + i + "-9"; }));
 
-    var path = d3.geo.path()
-        .projection(projection);
-
     var svg = d3.select("#map").insert("svg:svg", "map")
         .attr("width", '100%')
         .attr("height", height);
-
 
     d3.json("data/combined.json", function(error, data) {
         svg.selectAll(".unit")
@@ -58,17 +58,19 @@ function drawMap(height){
                     region_totals[regions[id]] += totals[id];
 
                 }
-                return "unit " + id + " " + quantile(totals[id]);
+                return "unit " + slugify(id) + " " + quantile(totals[id]);
             })
             .attr("d", path)
-            .on('mouseenter', function(d){
+            .on('mouseenter', function(d, i){
                 var id = d.properties.name;
                 if (totals[id]){
                     showBox(d.properties);
+                    d3.select(this).classed('hovered', true);
                 }
             })
-            .on('mouseleave', function(e){
+            .on('mouseleave', function(d, i){
                 hideBox();
+                d3.select(this).classed('hovered', false);
             })
             .on('click', function(e){
                 if (e.properties.postal){
@@ -79,9 +81,30 @@ function drawMap(height){
                     // datatable.fnFilter(e.properties.name, 6);
                 }
             });
-    });   
+    });
 
-    $(window).resize();
+    d3.select(window).on('resize', resize);
+
+    function resize() {
+        // adjust things when the window size changes
+        width = parseInt(d3.select('#map').style('width'));
+        width = width - margin.left - margin.right;
+        height = width * mapRatio;
+
+        // update projection
+        projection
+            .translate([width / 2 - 20, height / 2 + height/50])
+            .scale(width / 400 * 70);
+
+        // resize the map container
+        svg
+            .style('width', width + 'px')
+            .style('height', height + 'px');
+
+        // resize the map
+        svg.selectAll('.unit').attr('d', path);
+    }
+
 }
 
 function addEventListeners(){
@@ -100,20 +123,6 @@ function addEventListeners(){
             'top' : y
         });
     });
-
-    $(window).resize(function() {
-        if(this.resizeTO) clearTimeout(this.resizeTO);
-        this.resizeTO = setTimeout(function() {
-            $(this).trigger('resizeEnd');
-        }, 500);
-    });
-
-    $(window).bind('resizeEnd', function() {
-        var height = calc_height();
-        $("#map svg").css("height", height);
-        drawMap(height);
-        if(this.resizeTO) clearTimeout(this.resizeTO);
-    });    
 }
 
 function calc_height(){
@@ -130,6 +139,10 @@ function showBox(d){
 
 function hideBox(){
     $infobox.hide();
+}
+
+function slugify(t){
+    return t.replace(/[^-a-zA-Z0-9\s]+/ig, '').replace(/-/gi, "_").replace(/\s/gi, "-").toLowerCase();
 }
 
 function toTitleCase(str){

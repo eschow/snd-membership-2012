@@ -12,9 +12,6 @@ function init(){
     addEventListeners();
 }
 
-var US_counts = {};
-var abroad_counts = {};
-
 function drawRows(){
     $.each(members, function(k, v){
         v.country = toTitleCase(v.country);
@@ -56,7 +53,6 @@ function drawMap(height){
                 if (totals[id] && regions[id]){
                     summary_counts[regions[id]]['count'] += totals[id];
                     region_totals[regions[id]] += totals[id];
-
                 }
                 return "unit " + slugify(id) + " " + quantile(totals[id]);
             })
@@ -82,6 +78,7 @@ function drawMap(height){
                 }
             });
     });
+
 
     d3.select(window).on('resize', resize);
 

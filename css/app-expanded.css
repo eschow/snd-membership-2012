@@ -586,3 +586,8 @@ div.box {
 		top: 60%;
 	}
 }
+@media (max-width: 450px){
+	#label {
+		display: none;
+	}
+}

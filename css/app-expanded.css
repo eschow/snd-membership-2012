@@ -1,6 +1,3 @@
-body {
-	font-family: 'Istok Web', Helvetica, Arial, sans-serif;
-}
 #membership-viz {
     margin: 0 auto;
     max-width: 1170px;
@@ -21,10 +18,6 @@ body {
 #membership-viz tr, 
 #membership-viz td {
 	border-collapse: collapse;
-}
-#membership-viz .caps {
-	font-size: 0.7em;
-	text-transform: uppercase;
 }
 #membership-viz .align-center {
 	text-align: center;
@@ -81,10 +74,10 @@ body {
 	right: -8px;	
 }
 #membership-viz #legend .lines {
-	background-color: white;
+	background-color: transparent;
 }
 #membership-viz p#label {
-	background-color: white;
+	background-color: transparent;
 	border: 1px solid #CCC;
 	left: 3%;
 	font-size: 0.8em;
@@ -101,10 +94,17 @@ body {
 	-webkit-box-shadow: 0px 0px 4px #ddd;
 	-moz-box-shadow: 0px 0px 4px #ddd;
 	box-shadow: 0px 0px 4px #ddd;
-	font-size: 0.9em;
 	max-width: 180px;
 	padding: 8px;
-	z-index: 5;
+	z-index: 5;	
+}
+#membership-viz #info-box p {
+	font-size: 13px;
+	line-height: 16px;	
+}
+#membership-viz #info-box p.caps {
+	font-size: 0.6em;
+	text-transform: uppercase;
 }
 #membership-viz .note {
 	border-top: 1px solid #ccc;
@@ -113,37 +113,6 @@ body {
 	padding-top: 10px;
 	margin-top: 10px;
 }
-/*
- *  File:         demo_table.css
- *  CVS:          $Id$
- *  Description:  CSS descriptions for DataTables demo pages
- *  Author:       Allan Jardine
- *  Created:      Tue May 12 06:47:22 BST 2009
- *  Modified:     $Date$ by $Author$
- *  Language:     CSS
- *  Project:      DataTables
- *
- *  Copyright 2009 Allan Jardine. All Rights Reserved.
- *
- * ***************************************************************************
- * DESCRIPTION
- *
- * The styles given here are suitable for the demos that are used with the standard DataTables
- * distribution (see www.datatables.net). You will most likely wish to modify these styles to
- * meet the layout requirements of your site.
- *
- * Common issues:
- *   'full_numbers' pagination - I use an extra selector on the body tag to ensure that there is
- *     no conflict between the two pagination types. If you want to use full_numbers pagination
- *     ensure that you either have "example_alt_pagination" as a body class name, or better yet,
- *     modify that selector.
- *   Note that the path used for Images is relative. All images are by default located in
- *     http://www.snd.org/wp-content/uploads/2013/09/ - relative to this CSS file.
- */
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables features
- */
 
 #membership-viz .dataTables_wrapper {
 	position: relative;
@@ -151,7 +120,9 @@ body {
 	zoom: 1; /* Feeling sorry for IE */
 	font-size: 0.9em;
 }
-
+#membership-viz .dataTables_wrapper tr {
+	border-bottom: 1px solid #ddd;
+}
 #membership-viz .dataTables_processing {
 	position: absolute;
 	top: 50%;
@@ -165,7 +136,7 @@ body {
 	text-align: center;
 	color: #999;
 	font-size: 14px;
-	background-color: white;
+	background-color: transparent;
 }
 
 #membership-viz .dataTables_length,
@@ -198,7 +169,7 @@ body {
 	text-align: right;
 }
 #membership-viz .dataTables_filter input {
-	font-family: 'Istok Web', Helvetica, Arial, sans-serif;
+	background-color: #FCFCFC;
 	font-size: 1em;
 	padding: 2px 7px 0px;
 }
@@ -349,24 +320,6 @@ body {
 	outline: none;
 }
 
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * DataTables row classes
- */
-#membership-viz tr.odd {
-	background-color: #fafafa;
-}
-
-#membership-viz tr.even {
-	background-color: white;
-}
-
-
-
-
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Misc
  */
@@ -475,56 +428,15 @@ body {
  * Sorting classes for columns
  */
 /* For the standard odd/even */
-#membership-viz tr.odd td.sorting_1 {
-	background-color: #ececec;
-}
-
-#membership-viz tr.odd td.sorting_2 {
-	background-color: #DADCFF;
-}
-
-#membership-viz tr.odd td.sorting_3 {
-	background-color: #E0E2FF;
-}
-
-#membership-viz tr.even td.sorting_1 {
-	background-color: #fafafa;
-}
-
-#membership-viz tr.even td.sorting_2 {
-	background-color: #F2F3FF;
-}
-
+#membership-viz tr.odd td.sorting_1,
+#membership-viz tr.odd td.sorting_2,
+#membership-viz tr.odd td.sorting_3,
+#membership-viz tr.even td.sorting_1,
+#membership-viz tr.even td.sorting_2,
 #membership-viz tr.even td.sorting_3 {
-	background-color: #F9F9FF;
+	background-color: #E7E7E7;
 }
 
-/*
- * KeyTable
- */
-#membership-viz table.KeyTable td {
-	border: 3px solid transparent;
-}
-
-#membership-viz table.KeyTable td.focus {
-	border: 3px solid #3366FF;
-}
-
-#membership-viz table.display tr.gradeA {
-	background-color: #eeffee;
-}
-
-#membership-viz table.display tr.gradeC {
-	background-color: #ddddff;
-}
-
-#membership-viz table.display tr.gradeX {
-	background-color: #ffdddd;
-}
-
-#membership-viz table.display tr.gradeU {
-	background-color: #ddd;
-}
 
 #membership-viz div.box {
 	height: 100px;
